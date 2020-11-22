@@ -5,7 +5,7 @@ import * as queryString from "querystring";
 import { BaiduTranslateResponse } from "./common/interface";
 
 export function translate(str: string) {
-  const errorMap = {
+  const errorMap: { [key: string]: string } = {
     "52003": "用户未授权",
   };
   const salt = Math.random();
@@ -34,7 +34,7 @@ export function translate(str: string) {
     method: "GET",
   };
   const req = https.request(options, (res) => {
-    const data = [];
+    const data: Buffer[] = [];
     res.on("data", (chunk: Buffer) => {
       data.push(chunk);
     });
